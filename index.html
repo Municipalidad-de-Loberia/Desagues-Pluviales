@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Cuencasdeaporte_1.js"></script>
+        <script src="data/Pluviales_21_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[-38.20195687195867,-58.812910511826715],[-38.14210664913106,-58.73709631258534]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_OSMStandard_0');
+        map.getPane('pane_OSMStandard_0').style.zIndex = 400;
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            pane: 'pane_OSMStandard_0',
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_Cuencasdeaporte_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Nombre</th>\
+                        <td>' + (feature.properties['Nombre'] !== null ? autolinker.link(feature.properties['Nombre'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Termina en</th>\
+                        <td>' + (feature.properties['Termina en'] !== null ? autolinker.link(feature.properties['Termina en'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Suo.</th>\
+                        <td>' + (feature.properties['Suo.'] !== null ? autolinker.link(feature.properties['Suo.'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Cuencasdeaporte_1_0(feature) {
+            switch(String(feature.properties['Nombre'])) {
+                case 'Barragan':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Barreira':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Cayetano Rodrigiuez':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Diaz-Deferrari':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'F. De Caso':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Moreno':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Necochea':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Raggio-Bisciotti':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Roca':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'San Martin':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Sarmiento':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Urquiza':
+                    return {
+                pane: 'pane_Cuencasdeaporte_1',
+                opacity: 1,
+                color: 'rgba(0,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Cuencasdeaporte_1');
+        map.getPane('pane_Cuencasdeaporte_1').style.zIndex = 401;
+        map.getPane('pane_Cuencasdeaporte_1').style['mix-blend-mode'] = 'normal';
+        var layer_Cuencasdeaporte_1 = new L.geoJson(json_Cuencasdeaporte_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Cuencasdeaporte_1',
+            layerName: 'layer_Cuencasdeaporte_1',
+            pane: 'pane_Cuencasdeaporte_1',
+            onEachFeature: pop_Cuencasdeaporte_1,
+            style: style_Cuencasdeaporte_1_0,
+        });
+        bounds_group.addLayer(layer_Cuencasdeaporte_1);
+        map.addLayer(layer_Cuencasdeaporte_1);
+        function pop_Pluviales_21_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Calle</th>\
+                        <td>' + (feature.properties['Calle'] !== null ? autolinker.link(feature.properties['Calle'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">De</th>\
+                        <td>' + (feature.properties['De'] !== null ? autolinker.link(feature.properties['De'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">A</th>\
+                        <td>' + (feature.properties['A'] !== null ? autolinker.link(feature.properties['A'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Longitud</th>\
+                        <td>' + (feature.properties['Longitud'] !== null ? autolinker.link(feature.properties['Longitud'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Subcuenca</th>\
+                        <td>' + (feature.properties['Subcuenca'] !== null ? autolinker.link(feature.properties['Subcuenca'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DN</th>\
+                        <td>' + (feature.properties['DN'] !== null ? autolinker.link(feature.properties['DN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Pluviales_21_2_0(feature) {
+            switch(String(feature.properties['DN'])) {
+                case 'Φ1000':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(255,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Φ1200':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(0,154,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case '2xΦ1000':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(255,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case '2xΦ800':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(226,70,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Φ800':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(226,70,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=1.2 m=0.5':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=1.8 H=1.2':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(120,0,157,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=2 H=1.2':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(35,35,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=2 m=0.5':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(35,144,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=1.5 m=0.5':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,133,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=1.2 m=1':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,135,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case '2xΦ1200':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(0,154,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=1.5 H=1.2':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(127,9,98,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=2.5 m=1':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,90,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Φ600':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(255,248,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=2.5 m=0.5':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,101,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=2.3 m=0.5':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,101,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'Canal Existente':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,101,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=1 m=0.5':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,101,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=1.6 H=1.2':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,101,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+                case 'B=3 m=1':
+                    return {
+                pane: 'pane_Pluviales_21_2',
+                opacity: 1,
+                color: 'rgba(6,101,255,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 5.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Pluviales_21_2');
+        map.getPane('pane_Pluviales_21_2').style.zIndex = 402;
+        map.getPane('pane_Pluviales_21_2').style['mix-blend-mode'] = 'normal';
+        var layer_Pluviales_21_2 = new L.geoJson(json_Pluviales_21_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Pluviales_21_2',
+            layerName: 'layer_Pluviales_21_2',
+            pane: 'pane_Pluviales_21_2',
+            onEachFeature: pop_Pluviales_21_2,
+            style: style_Pluviales_21_2_0,
+        });
+        bounds_group.addLayer(layer_Pluviales_21_2);
+        map.addLayer(layer_Pluviales_21_2);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Pluviales_21<br /><table><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_Φ10000.png" /></td><td>Φ1000</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_Φ12001.png" /></td><td>Φ1200</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_2xΦ10002.png" /></td><td>2xΦ1000</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_2xΦ8003.png" /></td><td>2xΦ800</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_Φ8004.png" /></td><td>Φ800</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B12m055.png" /></td><td>B=1.2 m=0.5</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B18H126.png" /></td><td>B=1.8 H=1.2</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B2H127.png" /></td><td>B=2 H=1.2</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B2m058.png" /></td><td>B=2 m=0.5</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B15m059.png" /></td><td>B=1.5 m=0.5</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B12m110.png" /></td><td>B=1.2 m=1</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_2xΦ120011.png" /></td><td>2xΦ1200</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B15H1212.png" /></td><td>B=1.5 H=1.2</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B25m113.png" /></td><td>B=2.5 m=1</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_Φ60014.png" /></td><td>Φ600</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B25m0515.png" /></td><td>B=2.5 m=0.5</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B23m0516.png" /></td><td>B=2.3 m=0.5</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_CanalExistente17.png" /></td><td>Canal Existente</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B1m0518.png" /></td><td>B=1 m=0.5</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B16H1219.png" /></td><td>B=1.6 H=1.2</td></tr><tr><td style="text-align: center;"><img src="legend/Pluviales_21_2_B3m120.png" /></td><td>B=3 m=1</td></tr></table>': layer_Pluviales_21_2,'Cuencas de aporte<br /><table><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_Barragan0.png" /></td><td>Barragan</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_Barreira1.png" /></td><td>Barreira</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_CayetanoRodrigiuez2.png" /></td><td>Cayetano Rodrigiuez</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_DiazDeferrari3.png" /></td><td>Diaz-Deferrari</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_FDeCaso4.png" /></td><td>F. De Caso</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_Moreno5.png" /></td><td>Moreno</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_Necochea6.png" /></td><td>Necochea</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_RaggioBisciotti7.png" /></td><td>Raggio-Bisciotti</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_Roca8.png" /></td><td>Roca</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_SanMartin9.png" /></td><td>San Martin</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_Sarmiento10.png" /></td><td>Sarmiento</td></tr><tr><td style="text-align: center;"><img src="legend/Cuencasdeaporte_1_Urquiza11.png" /></td><td>Urquiza</td></tr></table>': layer_Cuencasdeaporte_1,"OSM Standard": layer_OSMStandard_0,}).addTo(map);
+        setBounds();
+        var i = 0;
+        layer_Cuencasdeaporte_1.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['Nombre'] !== null?String('<div style="color: #0032ff; font-size: 10pt; font-weight: bold; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['Nombre']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Cuencasdeaporte_1'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        var i = 0;
+        layer_Pluviales_21_2.eachLayer(function(layer) {
+            var context = {
+                feature: layer.feature,
+                variables: {}
+            };
+            layer.bindTooltip((layer.feature.properties['DN'] !== null?String('<div style="color: #323232; font-size: 7pt; font-weight: bold; font-family: \'Arial\', sans-serif;">' + layer.feature.properties['DN']) + '</div>':''), {permanent: true, offset: [-0, -16], className: 'css_Pluviales_21_2'});
+            labels.push(layer);
+            totalMarkers += 1;
+              layer.added = true;
+              addLabel(layer, i);
+              i++;
+        });
+        resetLabels([layer_Cuencasdeaporte_1,layer_Pluviales_21_2]);
+        map.on("zoomend", function(){
+            resetLabels([layer_Cuencasdeaporte_1,layer_Pluviales_21_2]);
+        });
+        map.on("layeradd", function(){
+            resetLabels([layer_Cuencasdeaporte_1,layer_Pluviales_21_2]);
+        });
+        map.on("layerremove", function(){
+            resetLabels([layer_Cuencasdeaporte_1,layer_Pluviales_21_2]);
+        });
+        </script>
+    </body>
+</html>
